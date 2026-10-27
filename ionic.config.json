@@ -1,0 +1,7 @@
+{
+  "name": "HelpDesk",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
