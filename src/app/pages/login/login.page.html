@@ -1,6 +1,20 @@
-<ion-header [translucent]="true">
 
-
-<ion-content [fullscreen]="true">
-  
+<ion-content [scrollY]="false">
+    <ion-img src="assets/icon/helpdesk_logo_solo_texto.png" id="mimg"></ion-img>
+    <div class="form">
+        <ion-list>
+            <ion-item style="padding-bottom: 20px;">
+                <ion-input type="Email" labelPlacement="floating" placeholder="JuanHT@gmail.com" fill="outline">
+                    <div slot="label">Email</div>
+                </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="password" fill="outline" labelPlacement="floating">
+                    <div slot="label">Contraseña</div>
+                    <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+                </ion-input>
+            </ion-item>
+        </ion-list>
+        <ion-button style="padding-top: 20px;" (click)="pageHelp()" expand="block"> Ingresar</ion-button>
+    </div>
 </ion-content>

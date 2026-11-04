@@ -1,0 +1,46 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* min-height: 100% en lugar de 100vh evita que se recorra al abrir teclado */
+  min-height: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.custom-input {
+  margin-bottom: 24px; 
+}
+
+ion-content {
+  --keyboard-offset: 0px !important;
+  --offset-top: 0px !important;
+  --offset-bottom: 0px !important;
+  /* Se eliminó overflow: hidden para que no se quede la pantalla en blanco */
+}
+
+ion-list {
+  width: 100%;
+  max-width: 400px;
+  background: transparent;
+}
+
+ion-input, ion-item {
+  overflow: visible !important;
+}
+
+ion-item.input-bordered {
+  --background: #ffffff;
+  --overflow: visible;     
+  overflow: visible;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  margin-top: 14px;        
+  margin-bottom: 12px;
+  transition: border-color 0.2s ease;
+}
+
+ion-item.input-bordered:focus-within {
+  border-color: #2563eb;
+}
