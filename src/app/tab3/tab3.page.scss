@@ -1,10 +1,20 @@
-.encabezado {
-  margin-top: 20px;
+.fondo {
+  background-color: #2563eb;
+}
+
+.user {
+  margin-top: 30px;
   background-color: #73737327;
 }
 
+.text {
+  color: #737373;
+  margin-top: 2px;
+}
+
 .menu {
-  margin-top: 40px;
+  margin-top: 60px;
+  background-color: #73737327;
 }
 
 .avatar {
@@ -16,7 +26,7 @@
   justify-content: center;
 }
 
-.text {
-  color: #737373;
-  margin-top: 2px;
+ion-item {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }

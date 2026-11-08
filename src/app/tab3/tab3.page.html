@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
       Perfil
     </ion-title>
@@ -8,8 +8,7 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-grid>
-    <div class="encabezado">
+  <ion-grid class="user">
       <ion-row class="profile-header ion-text-center ion-padding-vertical">
         <ion-col size="6">
           <ion-avatar class="avatar">
@@ -21,7 +20,6 @@
           <p class="text">Usuario</p>
         </ion-col>
       </ion-row>
-    </div>
   </ion-grid>
 
 
@@ -39,7 +37,7 @@
       <ion-toggle slot="end"></ion-toggle>
     </ion-item>
 
-    <ion-item button routerLink="/notificaciones">
+    <ion-item (click)="pageNotifications()">
       <ion-icon slot="start" name="notifications-outline"></ion-icon>
       <ion-label>Notificaciones</ion-label>
       <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
@@ -58,7 +56,9 @@
         <ion-toolbar color="primary">
           <ion-title>Editar Mis Datos</ion-title>
           <ion-buttons slot="end">
-            <ion-button (click)="modalDatos.dismiss()">Cerrar</ion-button>
+            <ion-button (click)="modalDatos.dismiss()">
+              <ion-icon name="close"></ion-icon>
+            </ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
@@ -70,10 +70,14 @@
           </ion-item>
 
           <ion-item class="ion-margin-bottom" fill="outline">
+            <ion-input label="Correo:" labelPlacement="floating" type="mail" value="juanmar@gmail.com"></ion-input>
+          </ion-item>
+
+          <ion-item class="ion-margin-bottom" fill="outline">
             <ion-input label="Teléfono" labelPlacement="floating" type="tel" value="+52 55 1234 5678"></ion-input>
           </ion-item>
 
-          <ion-button expand="block" class="ion-margin-top" (click)="modalDatos.dismiss()">Guardar cambios</ion-button>
+          <ion-button expand="block" class="ion-margin-top" (click)="modalDatos.dismiss()"><b>Guardar cambios</b></ion-button>
         </div>
       </ion-content>
   </ion-modal>
