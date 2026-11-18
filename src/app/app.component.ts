@@ -7,5 +7,11 @@ import { IonApp, IonRouterOutlet } from '@ionic/angular';
   imports: [IonApp, IonRouterOutlet],
 })
 export class AppComponent {
-  constructor() {}
+  constructor() {
+    const savedTheme = localStorage.getItem('darkMode');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = savedTheme !== null ? savedTheme === 'true' : prefersDark;
+
+    document.body.classList.toggle('dark', isDark);
+  }
 }

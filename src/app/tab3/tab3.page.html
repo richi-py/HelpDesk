@@ -1,3 +1,4 @@
+@if(usuario){
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-title>
@@ -7,25 +8,27 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  
+
 
   <ion-grid class="user">
-      <ion-row class="profile-header ion-text-center ion-padding-vertical">
-        <ion-col size="6">
-          <ion-avatar class="avatar">
-            <img alt="Usuario" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-          </ion-avatar>
-        </ion-col>
-        <ion-col size="6" class="ion-text-left">
-          <h2>Juan Martínez</h2>
-          <p class="text">Usuario</p>
-        </ion-col>
-      </ion-row>
+    <ion-row class="profile-header ion-text-center ion-padding-vertical">
+      <ion-col size="6">
+        <ion-avatar class="avatar">
+          <img alt="Usuario" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+      </ion-col>
+      <ion-col size="6" class="ion-text-left">
+        <h2>Juan Martínez</h2>
+        <p class="text">Usuario</p>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 
 
   <ion-list lines="none" class="menu">
 
-    <ion-item button id="open-modal-datos">
+    <ion-item id="open-modal-datos">
       <ion-icon slot="start" name="person-outline"></ion-icon>
       <ion-label>Mis datos</ion-label>
       <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
@@ -52,34 +55,153 @@
 
 
   <ion-modal trigger="open-modal-datos" #modalDatos>
-      <ion-header>
-        <ion-toolbar color="primary">
-          <ion-title>Editar Mis Datos</ion-title>
-          <ion-buttons slot="end">
-            <ion-button (click)="modalDatos.dismiss()">
-              <ion-icon name="close"></ion-icon>
-            </ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Editar Mis Datos</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="modalDatos.dismiss()">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
 
-      <ion-content class="ion-padding ion-background-white">
-        <div class="ion-padding-top">
-          <ion-item class="ion-margin-bottom" fill="outline">
-            <ion-input label="Nombre:" labelPlacement="floating" value="Juan Martínez"></ion-input>
-          </ion-item>
+    <ion-content class="ion-padding ion-background-white">
+      <div class="ion-padding-top">
+        <ion-item class="ion-margin-bottom" fill="outline">
+          <ion-input label="Nombre:" labelPlacement="floating" value="Juan Martínez"></ion-input>
+        </ion-item>
 
-          <ion-item class="ion-margin-bottom" fill="outline">
-            <ion-input label="Correo:" labelPlacement="floating" type="mail" value="juanmar@gmail.com"></ion-input>
-          </ion-item>
+        <ion-item class="ion-margin-bottom" fill="outline">
+          <ion-input label="Correo:" labelPlacement="floating" type="mail" value="juanmar@gmail.com"></ion-input>
+        </ion-item>
 
-          <ion-item class="ion-margin-bottom" fill="outline">
-            <ion-input label="Teléfono" labelPlacement="floating" type="tel" value="+52 55 1234 5678"></ion-input>
-          </ion-item>
+        <ion-item class="ion-margin-bottom" fill="outline">
+          <ion-input label="Teléfono:" labelPlacement="floating" type="tel" value="+52 55 1234 5678"></ion-input>
+        </ion-item>
 
-          <ion-button expand="block" class="ion-margin-top" (click)="modalDatos.dismiss()"><b>Guardar cambios</b></ion-button>
-        </div>
-      </ion-content>
+        <ion-button expand="block" class="ion-margin-top" (click)="modalDatos.dismiss()"><b>Guardar
+            cambios</b></ion-button>
+      </div>
+    </ion-content>
   </ion-modal>
-
+  
 </ion-content>
+}@else {
+  <ion-header [translucent]="true">
+  <ion-toolbar color="success">
+    <ion-title>
+      Perfil
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+
+
+  <ion-grid class="user">
+    <ion-row class="profile-header ion-text-center ion-padding-vertical">
+      <ion-col size="6">
+        <ion-avatar class="avatar">
+          <img alt="Usuario" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+      </ion-col>
+      <ion-col size="6" class="ion-text-left">
+        <h2>Jose Lozano</h2>
+        <p class="text">Técnico</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-list lines="none" class="menu">
+
+    <ion-item id="open-modal-datos">
+      <ion-icon slot="start" name="person-outline"></ion-icon>
+      <ion-label>Mis datos</ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon slot="start" name="settings-outline"></ion-icon>
+      <ion-label>Modo oscuro</ion-label>
+      <ion-toggle slot="end" 
+      [checked]="paletteToggle"
+      (ionChange)="toggleChange($event)"
+      justify="space-between"></ion-toggle>
+    </ion-item>
+
+    <ion-item (click)="pageNotifications()">
+      <ion-icon slot="start" name="notifications-outline"></ion-icon>
+      <ion-label>Notificaciones</ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item (click)="pageLogin()">
+      <ion-icon slot="start" name="log-out-outline"></ion-icon>
+      <ion-label>Cerrar sesión</ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+<h1 class="incidencia">Incidencias por Estado:</h1>
+<div class="chart-section">
+
+  <div class="chart-card">
+    <div class="grid-lines">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="bars-container">
+      @for (item of datosGrafica; track item.etiqueta) {
+        <div class="bar-item">
+          <span class="bar-value">{{ item.valor }}</span>
+          <div
+            [class]="'bar-column ' + item.claseColor"
+            [style.height.%]="calcularAltura(item.valor)">
+          </div>
+          <span class="bar-label">{{ item.etiqueta }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+  <ion-modal trigger="open-modal-datos" #modalDatos>
+    <ion-header>
+      <ion-toolbar color="success">
+        <ion-title>Editar Mis Datos</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="modalDatos.dismiss()">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding ion-background-white">
+      <div class="ion-padding-top">
+        <ion-item class="ion-margin-bottom" fill="outline">
+          <ion-input label="Nombre:" labelPlacement="floating" value="Juan Martínez"></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-margin-bottom" fill="outline">
+          <ion-input label="Correo:" labelPlacement="floating" type="mail" value="juanmar@gmail.com"></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-margin-bottom" fill="outline">
+          <ion-input label="Teléfono:" labelPlacement="floating" type="tel" value="+52 55 1234 5678"></ion-input>
+        </ion-item>
+
+        <ion-button color="success" expand="block" class="ion-margin-top" (click)="modalDatos.dismiss()"><b>Guardar
+            cambios</b></ion-button>
+      </div>
+    </ion-content>
+  </ion-modal>
+  
+</ion-content>
+  }

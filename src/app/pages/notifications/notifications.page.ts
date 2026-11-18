@@ -17,4 +17,6 @@ export class NotificationsPage implements OnInit {
   ngOnInit() {
   }
 
+  
+  usuario=true
 }
