@@ -1,0 +1,114 @@
+.history-content {
+  --background: #004ba0; // Fondo azul envolvente según el diseño
+
+  .history-container {
+    padding: 16px;
+  }
+
+  .history-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 24px 20px;
+    min-height: 80vh;
+  }
+
+  /* Línea de tiempo */
+  .timeline {
+    position: relative;
+
+    .timeline-item {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      padding-bottom: 28px;
+
+      /* Línea vertical conectora */
+      &::before {
+        content: '';
+        position: absolute;
+        left: 17px;
+        top: 36px;
+        bottom: 0;
+        width: 2px;
+        background-color: #e5e7eb;
+      }
+
+      /* Remueve la línea en el último elemento */
+      &.is-last::before {
+        display: none;
+      }
+
+      .timeline-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: #60a5fa; // Azul claro para notificaciones
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 18px;
+        flex-shrink: 0;
+        z-index: 1;
+
+        &.completed {
+          background-color: #22c55e; // Verde para resuelto/exitoso
+        }
+      }
+
+      .timeline-info {
+        margin-left: 14px;
+        flex: 1;
+
+        .event-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .event-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1f2937;
+          }
+
+          .event-time {
+            font-size: 0.8rem;
+            color: #9ca3af;
+          }
+        }
+
+        .event-author {
+          margin: 4px 0 0 0;
+          font-size: 0.85rem;
+          color: #9ca3af;
+        }
+      }
+    }
+  }
+
+  /* Cuadro de Solución */
+  .solution-section {
+    margin-top: 10px;
+
+    h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #374151;
+      margin: 0 0 10px 0;
+    }
+
+    .solution-box {
+      background-color: #f9fafb;
+      border: 1px solid #f3f4f6;
+      border-radius: 12px;
+      padding: 14px;
+
+      p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: #6b7280;
+        line-height: 1.4;
+      }
+    }
+  }
+}

@@ -1,0 +1,136 @@
+.detail-content {
+  --background: #f4f5f8;
+
+  .detail-container {
+    padding: 16px;
+  }
+
+  .detail-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+    .ticket-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+
+      .ticket-id {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #1f2937;
+      }
+
+      .badge-status {
+        padding: 6px 12px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: capitalize;
+
+        &.warning {
+          background-color: #fef3c7;
+          color: #d97706;
+        }
+
+        &.success {
+          background-color: #d1fae5;
+          color: #059669;
+        }
+
+        &.primary {
+          background-color: #e0e7ff;
+          color: #4f46e5;
+        }
+      }
+    }
+
+    .ticket-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 24px;
+
+      .ticket-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #374151;
+        margin: 0;
+      }
+
+      .ticket-time {
+        font-size: 0.8rem;
+        color: #9ca3af;
+      }
+    }
+
+    .section-block {
+      margin-bottom: 20px;
+
+      h3 {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin: 0 0 6px 0;
+      }
+
+      p {
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin: 0;
+        line-height: 1.4;
+      }
+
+      .comments-text {
+        color: #9ca3af;
+      }
+    }
+
+    .metadata-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+
+      .metadata-col {
+        flex: 1;
+
+        h3 {
+          font-size: 0.9rem;
+          font-weight: 700;
+          color: #1f2937;
+          margin: 0 0 6px 0;
+        }
+
+        .chip {
+          display: inline-block;
+          padding: 6px 16px;
+          border-radius: 20px;
+          font-size: 0.8rem;
+          font-weight: 600;
+
+          &.chip-blue {
+            background-color: #e0f2fe;
+            color: #0284c7;
+          }
+
+          &.chip-orange {
+            background-color: #fef3c7;
+            color: #d97706;
+          }
+        }
+      }
+    }
+
+    .action-container {
+      margin-top: 28px;
+
+      .history-btn {
+        --border-radius: 25px;
+        font-weight: 600;
+        text-transform: none;
+      }
+    }
+  }
+}

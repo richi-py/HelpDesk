@@ -1,0 +1,63 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/detalle-incidencia" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Historial de incidencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="history-content">
+  <div class="history-container">
+    <div class="history-card">
+
+      <!-- Información de la incidencia seleccionada -->
+      @if (incidencia) {
+        <div class="incidence-info">
+          <h3>{{ incidencia.id }}</h3>
+          <p>{{ incidencia.title }}</p>
+        </div>
+      }
+
+      <!-- Línea de tiempo -->
+      @if (historial.length > 0) {
+        <div class="timeline">
+
+          @for (item of historial; track $index) {
+            <div class="timeline-item" [class.is-last]="$last">
+
+              <div class="timeline-icon" [class.completed]="item.isCheck">
+                <ion-icon [name]="item.isCheck ? 'checkmark' : 'notifications'"></ion-icon>
+              </div>
+
+              <div class="timeline-info">
+                <div class="event-header">
+                  <span class="event-title">{{ item.titulo }}</span>
+                  <span class="event-time">{{ item.tiempo }}</span>
+                </div>
+
+                <p class="event-author">Por: {{ item.autor }}</p>
+              </div>
+
+            </div>
+          }
+
+        </div>
+      } @else {
+        <p class="empty-history">No hay movimientos registrados.</p>
+      }
+
+      <!-- Sección de Solución -->
+      @if (solucion) {
+        <div class="solution-section">
+          <h3>Solución</h3>
+
+          <div class="solution-box">
+            <p>{{ solucion }}</p>
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+</ion-content>

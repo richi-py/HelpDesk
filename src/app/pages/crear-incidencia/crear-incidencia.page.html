@@ -1,0 +1,148 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar color="primary">
+    <!-- Botón para regresar -->
+    <ion-buttons slot="start">
+      <ion-button (click)="Volver()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Nueva incidencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="incidencia-content">
+  <div class="form-container">
+
+    <!-- Campo para escribir el asunto -->
+    <div class="form-group">
+      <ion-input
+        label="Asunto"
+        labelPlacement="stacked"
+        fill="outline"
+        placeholder="Ej. No puedo imprimir"
+        [(ngModel)]="asunto">
+      </ion-input>
+    </div>
+
+    <!-- Selección del tipo de incidencia -->
+    <div class="form-group">
+      <label class="custom-label">Tipo de incidencia</label>
+      <div class="option-group">
+        <button
+          type="button"
+          [class.active]="tipoSeleccionado === 'Equipo'"
+          (click)="SeleccionarTipo('Equipo')">
+          <ion-icon name="laptop-outline"></ion-icon>
+          Equipo
+        </button>
+
+        <button
+          type="button"
+          [class.active]="tipoSeleccionado === 'Software'"
+          (click)="SeleccionarTipo('Software')">
+          <ion-icon name="settings-outline"></ion-icon>
+          Software
+        </button>
+
+        <button
+          type="button"
+          [class.active]="tipoSeleccionado === 'Red'"
+          (click)="SeleccionarTipo('Red')">
+          <ion-icon name="wifi-outline"></ion-icon>
+          Red
+        </button>
+      </div>
+    </div>
+
+    <!-- Descripción del problema -->
+    <div class="form-group">
+      <ion-textarea
+        label="Descripción del problema"
+        labelPlacement="stacked"
+        fill="outline"
+        rows="4"
+        placeholder="¿Qué pasó? ¿Desde cuándo?"
+        [(ngModel)]="descripcion">
+      </ion-textarea>
+    </div>
+
+    <!-- Botón para seleccionar una fotografía -->
+    <div class="photo-section">
+      <input
+        type="file"
+        accept="image/*"
+        #fotoInput
+        hidden
+        (change)="SeleccionarFoto($event)"
+      >
+
+      <ion-button
+        type="button"
+        fill="outline"
+        class="photo-button"
+        (click)="fotoInput.click()">
+        <ion-icon slot="start" name="camera-outline"></ion-icon>
+        Adjuntar foto
+      </ion-button>
+
+      <!-- Vista previa de la fotografía -->
+      @if (fotoUrl) {
+        <div class="photo-preview">
+          <img [src]="fotoUrl" alt="Fotografía adjunta">
+          <span>{{ nombreFoto }}</span>
+          <ion-button
+            fill="clear"
+            color="danger"
+            class="remove-photo"
+            (click)="EliminarFoto()">
+            <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+          </ion-button>
+        </div>
+      }
+    </div>
+
+    <!-- Selección del nivel de urgencia -->
+    <div class="form-group">
+      <label class="custom-label">Nivel de urgencia</label>
+      <div class="option-group urgency-group">
+        <button
+          type="button"
+          [class.active]="urgencia === 'Baja'"
+          (click)="SeleccionarUrgencia('Baja')">
+          Baja
+        </button>
+
+        <button
+          type="button"
+          [class.active]="urgencia === 'Media'"
+          (click)="SeleccionarUrgencia('Media')">
+          Media
+        </button>
+
+        <button
+          type="button"
+          [class.active]="urgencia === 'Alta'"
+          (click)="SeleccionarUrgencia('Alta')">
+          Alta
+        </button>
+
+        <button
+          type="button"
+          [class.active]="urgencia === 'Crítica'"
+          (click)="SeleccionarUrgencia('Crítica')">
+          Crítica
+        </button>
+      </div>
+    </div>
+
+    <!-- Botón para crear la incidencia -->
+    <ion-button
+      expand="block"
+      class="create-button"
+      (click)="CrearIncidencia()">
+      Crear incidencia
+    </ion-button>
+
+  </div>
+</ion-content>

@@ -1,15 +1,120 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<!-- Encabezado principal de la aplicación -->
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
     <ion-title>
-      Reportes
+      <div class="toolbar-title">
+        <ion-icon name="headset-outline"></ion-icon>
+        <span>Helpdesk</span>
+      </div>
     </ion-title>
+
+    <!-- Botones de notificaciones y perfil -->
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+      </ion-button>
+
+      <ion-avatar class="user-avatar">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-avatar>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="home-content">
+
+  <!-- Mensaje de bienvenida al usuario -->
+  <div class="welcome-header">
+    <h2>Hola, Adán</h2>
+    <p>Bienvenido al sistema de incidencias.</p>
+  </div>
+
+  <!-- Tarjetas que muestran las estadísticas de incidencias -->
+  <ion-grid class="stats-grid">
+    <ion-row>
+      <ion-col size="4">
+        <div class="stat-card">
+          <div class="stat-badge blue">
+            <ion-icon name="document-text-outline"></ion-icon>
+          </div>
+          <h3>{{ recentTickets.length }}</h3>
+          <p>Mis incidencias</p>
+        </div>
+      </ion-col>
+
+      <ion-col size="4">
+        <div class="stat-card">
+          <div class="stat-badge orange">
+            <ion-icon name="time-outline"></ion-icon>
+          </div>
+          <h3>1</h3>
+          <p>En proceso</p>
+        </div>
+      </ion-col>
+
+      <ion-col size="4">
+        <div class="stat-card">
+          <div class="stat-badge green">
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+          </div>
+          <h3>5</h3>
+          <p>Resueltas</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Botón para registrar una nueva incidencia -->
+  <div class="ion-padding-horizontal">
+    <ion-button expand="block" shape="round" class="action-btn" (click)="Registrar_Incidencia()">
+      <ion-icon slot="start" name="add-outline"></ion-icon>
+      Registrar incidencia
+    </ion-button>
+  </div>
+
+  <!-- Apartado donde se muestran las incidencias recientes -->
+  <div class="recent-section">
+    <div class="section-header">
+      <h3>Mis incidencias recientes</h3>
+
+      <!-- Muestra la opción de ver todas si existen incidencias -->
+      @if (sihay && recentTickets.length > 0) {
+        <a class="see-all">Ver todas</a>
+      }
+    </div>
+
+    <!-- Recorre el arreglo y muestra cada incidencia -->
+    @if (sihay && recentTickets.length > 0) {
+      <ion-list lines="none" class="tickets-list">
+
+        @for (item of recentTickets; track item.id) {
+          <ion-item class="ticket-card" button (click)="verDetalle(item)">
+            <ion-label>
+              <div class="ticket-top">
+                <span class="ticket-id">{{ item.id }}</span>
+                <ion-badge [class]="item.statusClass">{{ item.status }}</ion-badge>
+              </div>
+
+              <!-- Información de cada incidencia -->
+              <div class="ticket-bottom">
+                <span class="ticket-title">{{ item.title }}</span>
+                <span class="ticket-time">{{ item.time }}</span>
+              </div>
+            </ion-label>
+          </ion-item>
+        }
+
+      </ion-list>
+
+    } @else {
+
+      <!-- Mensaje que aparece cuando no hay incidencias registradas -->
+      <div class="empty-state">
+        <ion-icon name="document-text-outline" class="empty-icon"></ion-icon>
+        <h4>Aún no hay incidencias</h4>
+        <p>No tienes incidencias registradas en este momento.</p>
+      </div>
+
+    }
+  </div>
 </ion-content>
