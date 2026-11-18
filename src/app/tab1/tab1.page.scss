@@ -1,0 +1,255 @@
+// Fondo principal de la pantalla
+.home-content {
+  --background: #f4f6fa;
+}
+
+// Encabezado superior
+.toolbar-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.toolbar-title ion-icon {
+  font-size: 25px;
+}
+
+.user-avatar {
+  width: 35px;
+  height: 35px;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-avatar ion-icon {
+  font-size: 35px;
+  color: white;
+}
+
+// Mensaje de bienvenida
+.welcome-header {
+  padding: 25px 20px 10px;
+}
+
+.welcome-header h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+.welcome-header p {
+  color: #777;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+// Tarjetas de estadísticas
+.stats-grid {
+  padding: 10px 12px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 15px;
+  padding: 15px 5px;
+  text-align: center;
+  min-height: 125px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card h3 {
+  font-size: 23px;
+  font-weight: bold;
+  color: #222;
+  margin: 8px 0 4px;
+}
+
+.stat-card p {
+  font-size: 11px;
+  color: #777;
+  margin: 0;
+}
+
+// Iconos de las tarjetas
+.stat-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stat-badge ion-icon {
+  font-size: 22px;
+}
+
+.blue {
+  background: #e2edff;
+  color: #2878df;
+}
+
+.orange {
+  background: #fff0dc;
+  color: #ed942b;
+}
+
+.green {
+  background: #e0f7e9;
+  color: #28a45c;
+}
+
+// Botón para registrar incidencias
+.action-btn {
+  margin-top: 15px;
+  margin-bottom: 25px;
+  height: 48px;
+  font-weight: bold;
+  --background: #2869c7;
+  --background-activated: #1e55a5;
+  --box-shadow: 0 4px 10px rgba(40, 105, 199, 0.2);
+}
+
+// Sección de incidencias recientes
+.recent-section {
+  padding: 0 18px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.section-header h3 {
+  font-size: 17px;
+  font-weight: bold;
+  color: #222;
+}
+
+.see-all {
+  color: #2878df;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+// Lista de incidencias
+.tickets-list {
+  background: transparent;
+}
+
+.ticket-card {
+  --background: white;
+  --border-radius: 12px;
+  --padding-start: 15px;
+  --inner-padding-end: 15px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+.ticket-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.ticket-id {
+  color: #2878df;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.ticket-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ticket-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.ticket-time {
+  font-size: 11px;
+  color: #999;
+}
+
+// Colores de los estados de las incidencias
+ion-badge {
+  font-size: 10px;
+  padding: 6px 9px;
+  border-radius: 8px;
+}
+
+.warning {
+  --background: #fff0dc;
+  --color: #d98216;
+}
+
+.success {
+  --background: #e0f7e9;
+  --color: #219653;
+}
+
+.primary {
+  --background: #e2edff;
+  --color: #2878df;
+}
+
+// Mensaje cuando no existen incidencias
+.empty-state {
+  background: white;
+  border-radius: 15px;
+  padding: 30px 15px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.empty-icon {
+  font-size: 45px;
+  color: #aab6c5;
+}
+
+.empty-state h4 {
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.empty-state p {
+  color: #999;
+  font-size: 13px;
+}
+
+// Barra de navegación inferior
+.custom-tab-bar {
+  background: white;
+  border-top: 1px solid #eeeeee;
+  height: 60px;
+  padding-bottom: 3px;
+}
+
+.custom-tab-bar ion-tab-button {
+  --color: #999;
+  --color-selected: #2878df;
+  font-size: 11px;
+}
+
+.custom-tab-bar ion-tab-button ion-icon {
+  font-size: 21px;
+}
+
+.custom-tab-bar ion-tab-button ion-label {
+  font-size: 11px;
+}

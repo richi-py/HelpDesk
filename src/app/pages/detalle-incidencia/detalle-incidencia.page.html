@@ -1,0 +1,63 @@
+<!-- Encabezado con botón para regresar -->
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle de incidencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="detail-content">
+  @if (incidencia) {
+    <div class="detail-container">
+      <div class="detail-card">
+        
+        <!-- Encabezado del Ticket -->
+        <div class="ticket-header">
+          <span class="ticket-id">{{ incidencia.id }}</span>
+          <ion-badge [class]="'badge-status ' + incidencia.statusClass">
+            {{ incidencia.status }}
+          </ion-badge>
+        </div>
+
+        <!-- Título y Fecha -->
+        <div class="ticket-info">
+          <h2 class="ticket-title">{{ incidencia.title }}</h2>
+          <span class="ticket-time">{{ incidencia.time }}</span>
+        </div>
+
+        <!-- Sección: Descripción -->
+        <div class="section-block">
+          <h3>Descripción</h3>
+          <p>{{ incidencia.description || 'Sin descripción detallada.' }}</p>
+        </div>
+
+        <!-- Sección: Tipo y Urgencia en 2 Columnas -->
+        <div class="metadata-row">
+          <div class="metadata-col">
+            <h3>Tipo</h3>
+            <span class="chip chip-blue">{{ incidencia.type || 'Soporte' }}</span>
+          </div>
+          <div class="metadata-col">
+            <h3>Urgencia</h3>
+            <span class="chip chip-orange">{{ incidencia.urgency || 'Media' }}</span>
+          </div>
+        </div>
+
+        <!-- Sección: Comentarios -->
+        <div class="section-block">
+          <h3>Comentarios</h3>
+          <p class="comments-text">{{ incidencia.comments || 'Aún no hay comentarios.' }}</p>
+        </div>
+
+        <!-- Botón de Acción -->
+        <div class="action-container" >
+          <ion-button expand="block" shape="round" color="primary" class="history-btn" (click)="Ver_Historial()">
+            Ver historial
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  }
+</ion-content>
