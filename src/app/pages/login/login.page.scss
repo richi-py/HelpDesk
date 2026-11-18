@@ -13,6 +13,16 @@
   margin-bottom: 24px; 
 }
 
+.subLogin{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-content{
+  background-color: #EBF7FF;
+}
+
 ion-content {
   --keyboard-offset: 0px !important;
   --offset-top: 0px !important;

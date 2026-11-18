@@ -1,15 +1,18 @@
-
 <ion-content [scrollY]="false">
-    <ion-img src="assets/icon/helpdesk_logo_solo_texto.png" id="mimg"></ion-img>
+    <ion-img src="assets/icon/helpdesk_logo_solo_texto.png" id="mimg" style="padding-top: 60px;"></ion-img>
+
+    <p class="subLogin"><strong>Inicia sesion para continuar</strong></p>
     <div class="form">
         <ion-list>
             <ion-item style="padding-bottom: 20px;">
                 <ion-input type="Email" labelPlacement="floating" placeholder="JuanHT@gmail.com" fill="outline">
+                    <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
                     <div slot="label">Email</div>
                 </ion-input>
             </ion-item>
             <ion-item>
-                <ion-input type="password" fill="outline" labelPlacement="floating">
+                <ion-input type="password" password-toggle="true" fill="outline" label-placement="floating">
+                    <ion-icon name="person-outline" slot="start"></ion-icon>
                     <div slot="label">Contraseña</div>
                     <ion-input-password-toggle slot="end"></ion-input-password-toggle>
                 </ion-input>
