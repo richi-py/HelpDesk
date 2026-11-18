@@ -1,0 +1,133 @@
+@if (usuario) {
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Notificaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <div class="notification">
+      <ion-row class="profile-header ion-text-center ion-padding-vertical">
+        <ion-col size="4">
+          <div class="icono">
+            <img alt="Usuario" src="assets/icon/progreso.png" />
+          </div>
+        </ion-col>
+        <ion-col size="8" class="ion-text-left">
+          <h4>Tu incidencia #INC-6512 cambió a -En proceso-.</h4>
+          <p class="text">Hace 2h</p>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="notification">
+      <ion-row class="profile-header ion-text-center ion-padding-vertical">
+        <ion-col size="4">
+          <div class="icono">
+            <img alt="Usuario" src="assets/icon/mensaje.png" />
+          </div>
+        </ion-col>
+        <ion-col size="8" class="ion-text-left">
+          <h4>Se agregó un comentario en la incidencia #INC-6512.</h4>
+          <p class="text">Hace 1 día</p>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="notification">
+      <ion-row class="profile-header ion-text-center ion-padding-vertical">
+        <ion-col size="4">
+          <div class="icono">
+            <img alt="Usuario" src="assets/icon/completado.png" />
+          </div>
+        </ion-col>
+        <ion-col size="8" class="ion-text-left">
+          <h4>Tu incidencia #INC-6512 fue resuleta.</h4>
+          <p class="text">Hace 1 día</p>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="notification">
+      <ion-row class="profile-header ion-text-center ion-padding-vertical">
+        <ion-col size="4">
+          <div class="icono">
+            <img alt="Usuario" src="assets/icon/mensaje.png" />
+          </div>
+        </ion-col>
+        <ion-col size="8" class="ion-text-left">
+          <h4>Mensaje del soporte: Gracias por tu reporte.</h4>
+          <p class="text">Hace 2 días</p>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>
+}@else {
+<ion-header [translucent]="true">
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Notificaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <div class="notification">
+      <ion-row class="profile-header ion-text-center ion-padding-vertical">
+        <ion-col size="4">
+          <div class="icono">
+            <img alt="Usuario" src="assets/icon/nueva.png" />
+          </div>
+        </ion-col>
+        <ion-col size="8" class="ion-text-left">
+          <h4>Nueva incidencia #INC-6512 asignada para ti.</h4>
+          <p class="text">Hace 2h</p>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="notification">
+      <ion-row class="profile-header ion-text-center ion-padding-vertical">
+        <ion-col size="4">
+          <div class="icono">
+            <img alt="Usuario" src="assets/icon/reporte.png" />
+          </div>
+        </ion-col>
+        <ion-col size="8" class="ion-text-left">
+          <h4>El usuario reportó un comentario en #INC-6512.</h4>
+          <p class="text">Hace 1 día</p>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="notification">
+      <ion-row class="profile-header ion-text-center ion-padding-vertical">
+        <ion-col size="4">
+          <div class="icono">
+            <img alt="Usuario" src="assets/icon/completado.png" />
+          </div>
+        </ion-col>
+        <ion-col size="8" class="ion-text-left">
+          <h4>La incidencia #INC-6512 fue resuleta.</h4>
+          <p class="text">Hace 1 día</p>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="notification">
+      <ion-row class="profile-header ion-text-center ion-padding-vertical">
+        <ion-col size="4">
+          <div class="icono">
+            <img alt="Usuario" src="assets/icon/mensaje.png" />
+          </div>
+        </ion-col>
+        <ion-col size="8" class="ion-text-left">
+          <h4>Recordatorio: Actualizar estado de #INC-6512</h4>
+          <p class="text">Hace 2 días</p>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>
+}

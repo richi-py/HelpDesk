@@ -19,6 +19,14 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 </head>
 
+  <script>
+    const savedTheme = localStorage.getItem('darkMode');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (savedTheme === 'true' || (savedTheme === null && prefersDark)) {
+      document.body.classList.add('dark');
+    }
+  </script>
+
 <body>
   <app-root></app-root>
 </body>

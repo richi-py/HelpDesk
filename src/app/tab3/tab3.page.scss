@@ -1,0 +1,144 @@
+.user {
+  padding-top: 20px ;
+  padding-bottom: 20px;
+  background-color: #73737327;
+  border-bottom: 4px solid #73737327;
+}
+
+.text {
+  color: #737373;
+  margin-top: 2px;
+}
+
+.menu {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-top: 4px solid #73737327;
+  border-bottom: 4px solid #73737327;
+  margin-top: 40px;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-item {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+ion-input {
+  padding-bottom: 20px;
+  font-size: 20px;
+}
+
+.incidencia {
+  margin-left: 20px;
+  margin-top: 30px;
+  font-size:larger;
+}
+
+.chart-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 15px;
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0;
+}
+
+.chart-card {
+  position: relative;
+  background: #73737327;
+  border: 1px solid #73737327;
+  border-radius: 12px;
+  padding: 24px 14px 14px 14px;
+  height: 225px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.grid-lines {
+  position: absolute;
+  top: 28px;
+  left: 14px;
+  right: 14px;
+  bottom: 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+
+  span {
+    width: 100%;
+    height: 1px;
+    background-color: #828282;
+  }
+}
+
+.bars-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 100%;
+  padding-top: 16px;
+}
+
+.bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  width: 22%;
+}
+
+.bar-value {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.bar-column {
+  width: 40px;
+  min-height: 6px;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.35s ease-in-out;
+  border-bottom: 1px solid #cbd5e0;
+}
+
+.bar-amarillo {
+  background: linear-gradient(180deg, #f6c23e 0%, #e09f1f 100%);
+}
+
+.bar-azul {
+  background: linear-gradient(180deg, #4e9af1 0%, #2667b8 100%);
+}
+
+.bar-verde {
+  background: linear-gradient(180deg, #52c47d 0%, #2d8a52 100%);
+}
+
+.bar-rojo {
+  background: linear-gradient(180deg, #f26464 0%, #c53030 100%);
+}
+
+.bar-label {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+}
