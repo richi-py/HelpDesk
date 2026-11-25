@@ -1,6 +1,6 @@
 // Fondo principal de la pantalla
 .home-content {
-  --background: #f4f6fa;
+  --background: var(--app-bg, #f4f6fa);
 }
 
 // Encabezado superior
@@ -38,12 +38,12 @@
 .welcome-header h2 {
   font-size: 24px;
   font-weight: bold;
-  color: #222;
+  color: var(--app-text-primary, #222);
   margin-bottom: 5px;
 }
 
 .welcome-header p {
-  color: #777;
+  color: var(--app-text-secondary, #777);
   font-size: 14px;
   margin-top: 5px;
 }
@@ -54,24 +54,25 @@
 }
 
 .stat-card {
-  background: white;
+  background: var(--app-surface, white);
   border-radius: 15px;
   padding: 15px 5px;
   text-align: center;
   min-height: 125px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--app-card-shadow, 0 3px 10px rgba(0, 0, 0, 0.05));
+  border: 1px solid var(--app-border, transparent);
 }
 
 .stat-card h3 {
   font-size: 23px;
   font-weight: bold;
-  color: #222;
+  color: var(--app-text-primary, #222);
   margin: 8px 0 4px;
 }
 
 .stat-card p {
   font-size: 11px;
-  color: #777;
+  color: var(--app-text-secondary, #777);
   margin: 0;
 }
 
@@ -131,7 +132,7 @@
 .section-header h3 {
   font-size: 17px;
   font-weight: bold;
-  color: #222;
+  color: var(--app-text-primary, #222);
 }
 
 .see-all {
@@ -146,13 +147,14 @@
 }
 
 .ticket-card {
-  --background: white;
+  --background: var(--app-surface, white);
   --border-radius: 12px;
   --padding-start: 15px;
   --inner-padding-end: 15px;
   margin-bottom: 10px;
   border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--app-card-shadow, 0 3px 10px rgba(0, 0, 0, 0.04));
+  border: 1px solid var(--app-border, transparent);
 }
 
 .ticket-top {
@@ -177,12 +179,12 @@
 .ticket-title {
   font-size: 14px;
   font-weight: 600;
-  color: #333;
+  color: var(--app-text-primary, #333);
 }
 
 .ticket-time {
   font-size: 11px;
-  color: #999;
+  color: var(--app-text-muted, #999);
 }
 
 // Colores de los estados de las incidencias

@@ -1,23 +1,184 @@
-<ion-content [scrollY]="false">
-    <ion-img src="assets/icon/helpdesk_logo_solo_texto.png" id="mimg" style="padding-top: 60px;"></ion-img>
+<ion-content [scrollY]="true">
+  <div class="login-wrapper">
+    <ion-img
+      src="assets/icon/helpdesk_logo_solo_texto.png"
+      id="mimg"
+      alt="Logo HelpDesk">
+    </ion-img>
 
-    <p class="subLogin"><strong>Inicia sesion para continuar</strong></p>
-    <div class="form">
-        <ion-list>
-            <ion-item style="padding-bottom: 20px;">
-                <ion-input type="Email" labelPlacement="floating" placeholder="JuanHT@gmail.com" fill="outline">
-                    <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-                    <div slot="label">Email</div>
-                </ion-input>
+    <p class="subLogin"><strong>Inicia sesión para continuar</strong></p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submitLogin()" class="form">
+      <ion-list lines="none">
+        <!-- Campo Correo -->
+        <ion-item class="input-bordered" [class.input-error]="correoControl.invalid && correoControl.touched">
+          <ion-icon name="mail-outline" slot="start" color="primary"></ion-icon>
+          <ion-input
+            type="email"
+            formControlName="correo"
+            label="Correo electrónico"
+            labelPlacement="floating"
+            placeholder="usuario@ejemplo.com">
+          </ion-input>
+        </ion-item>
+        @if (correoControl.invalid && correoControl.touched) {
+          <div class="error-container">
+            @if (correoControl.hasError('required')) {
+              <span class="error-text">El correo es obligatorio.</span>
+            }
+            @if (correoControl.hasError('email')) {
+              <span class="error-text">Formato inválido (ej. usuario&#64;empresa.com).</span>
+            }
+          </div>
+        }
+        <ion-item class="input-bordered" [class.input-error]="passwordControl.invalid && passwordControl.touched">
+          <ion-icon name="lock-closed-outline" slot="start" color="primary"></ion-icon>
+          <ion-input
+            type="password"
+            formControlName="password"
+            label="Contraseña"
+            labelPlacement="floating"
+            placeholder="Mínimo 6 caracteres">
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+          </ion-input>
+        </ion-item>
+        @if (passwordControl.invalid && passwordControl.touched) {
+          <div class="error-container">
+            @if (passwordControl.hasError('required')) {
+              <span class="error-text">La contraseña es obligatoria.</span>
+            }
+            @if (passwordControl.hasError('minlength')) {
+              <span class="error-text">Mínimo 6 caracteres requeridos.</span>
+            }
+          </div>
+        }
+      </ion-list>
+
+      <ion-button
+        type="submit"
+        expand="block"
+        [disabled]="cargando"
+        class="login-btn">
+        <ion-icon name="log-in-outline" slot="start"></ion-icon>
+        Ingresar
+      </ion-button>
+
+      <div class="registro-enlace">
+        <p>¿No tienes una cuenta aún?</p>
+        <ion-button fill="clear" size="small" (click)="abrirRegistro(true)">
+          <ion-icon name="person-add-outline" slot="start"></ion-icon>
+          Crear cuenta en HelpDesk
+        </ion-button>
+      </div>
+    </form>
+  </div>
+
+  <ion-modal [isOpen]="modalRegistroAbierto" (didDismiss)="abrirRegistro(false)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Crear Cuenta</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="abrirRegistro(false)">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <div class="modal-registro-header">
+          <h2>Nuevo Usuario</h2>
+          <p>Tus datos se guardarán en el sistema HelpDesk.</p>
+        </div>
+
+        <form [formGroup]="registroForm" (ngSubmit)="submitRegistro()">
+          <ion-list lines="none">
+            <!-- Nombre -->
+            <ion-item class="input-bordered" [class.input-error]="registroNombre.invalid && registroNombre.touched">
+              <ion-icon name="person-outline" slot="start" color="primary"></ion-icon>
+              <ion-input
+                type="text"
+                formControlName="nombre"
+                label="Nombre completo"
+                labelPlacement="floating"
+                placeholder="Ej. Juan Pérez">
+              </ion-input>
             </ion-item>
-            <ion-item>
-                <ion-input type="password" password-toggle="true" fill="outline" label-placement="floating">
-                    <ion-icon name="person-outline" slot="start"></ion-icon>
-                    <div slot="label">Contraseña</div>
-                    <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-                </ion-input>
+            @if (registroNombre.invalid && registroNombre.touched) {
+              <div class="error-container">
+                <span class="error-text">Ingresa al menos 3 caracteres.</span>
+              </div>
+            }
+
+            <!-- Correo -->
+            <ion-item class="input-bordered" [class.input-error]="registroCorreo.invalid && registroCorreo.touched">
+              <ion-icon name="mail-outline" slot="start" color="primary"></ion-icon>
+              <ion-input
+                type="email"
+                formControlName="correo"
+                label="Correo electrónico"
+                labelPlacement="floating"
+                placeholder="juan@empresa.com">
+              </ion-input>
             </ion-item>
-        </ion-list>
-        <ion-button style="padding-top: 20px;" (click)="pageHelp()" expand="block"> Ingresar</ion-button>
-    </div>
+            @if (registroCorreo.invalid && registroCorreo.touched) {
+              <div class="error-container">
+                <span class="error-text">Ingresa un correo electrónico válido.</span>
+              </div>
+            }
+
+            <!-- Contraseña -->
+            <ion-item class="input-bordered" [class.input-error]="registroPassword.invalid && registroPassword.touched">
+              <ion-icon name="lock-closed-outline" slot="start" color="primary"></ion-icon>
+              <ion-input
+                type="password"
+                formControlName="password"
+                label="Contraseña"
+                labelPlacement="floating"
+                placeholder="Mínimo 6 caracteres">
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+              </ion-input>
+            </ion-item>
+            @if (registroPassword.invalid && registroPassword.touched) {
+              <div class="error-container">
+                <span class="error-text">La contraseña debe tener mínimo 6 caracteres.</span>
+              </div>
+            }
+
+            <ion-item class="input-bordered">
+              <ion-icon name="business-outline" slot="start" color="primary"></ion-icon>
+              <ion-input
+                type="text"
+                formControlName="area"
+                label="Área / Departamento"
+                labelPlacement="floating"
+                placeholder="Ej. Sistemas, Contabilidad">
+              </ion-input>
+            </ion-item>
+
+            <ion-item class="input-bordered">
+              <ion-icon name="call-outline" slot="start" color="primary"></ion-icon>
+              <ion-input
+                type="tel"
+                formControlName="telefono"
+                label="Teléfono (Opcional)"
+                labelPlacement="floating"
+                placeholder="10 dígitos">
+              </ion-input>
+            </ion-item>
+          </ion-list>
+
+          <ion-button
+            type="submit"
+            expand="block"
+            color="primary"
+            class="ion-margin-top">
+            <ion-icon name="person-add-outline" slot="start"></ion-icon>
+            Registrarme y Entrar
+          </ion-button>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

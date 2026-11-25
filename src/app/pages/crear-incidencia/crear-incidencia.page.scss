@@ -1,6 +1,6 @@
 // Fondo de la pantalla
 .incidencia-content {
-  --background: #f4f6fa;
+  --background: var(--app-bg, #f4f6fa);
 }
 
 .form-container {
@@ -16,7 +16,7 @@
   display: block;
   font-size: 15px;
   font-weight: 600;
-  color: #172b4d;
+  color: var(--app-text-primary, #172b4d);
   margin-bottom: 10px;
 }
 
@@ -24,12 +24,12 @@
 .form-group input,
 .form-group textarea {
   width: 100%;
-  border: 1px solid #d7e0ed;
+  border: 1px solid var(--app-border, #d7e0ed);
   border-radius: 13px;
-  background: white;
+  background: var(--app-surface, white);
   padding: 15px;
   font-size: 15px;
-  color: #172b4d;
+  color: var(--app-text-primary, #172b4d);
   outline: none;
   font-family: inherit;
 }
@@ -52,8 +52,8 @@
 .option-group {
   display: flex;
   width: 100%;
-  background: white;
-  border: 1px solid #d7e0ed;
+  background: var(--app-surface, white);
+  border: 1px solid var(--app-border, #d7e0ed);
   border-radius: 13px;
   overflow: hidden;
 }

@@ -10,11 +10,11 @@
 
     <!-- Botones de notificaciones y perfil -->
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="irNotificaciones()">
         <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
       </ion-button>
 
-      <ion-avatar class="user-avatar">
+      <ion-avatar class="user-avatar" (click)="irPerfil()" style="cursor: pointer;">
         <ion-icon name="person-circle-outline"></ion-icon>
       </ion-avatar>
     </ion-buttons>
@@ -22,14 +22,19 @@
 </ion-header>
 
 <ion-content class="home-content">
+  <!-- Pull to Refresh -->
+  <ion-refresher slot="fixed" (ionRefresh)="cargarDatos($event)">
+    <ion-refresher-content pullingText="Desliza para actualizar..." refreshingSpinner="crescent">
+    </ion-refresher-content>
+  </ion-refresher>
 
   <!-- Mensaje de bienvenida al usuario -->
   <div class="welcome-header">
-    <h2>Hola, Adán</h2>
+    <h2>Hola, {{ usuario?.nombre || 'Usuario' }}</h2>
     <p>Bienvenido al sistema de incidencias.</p>
   </div>
 
-  <!-- Tarjetas que muestran las estadísticas de incidencias -->
+  <!-- Tarjetas que muestran las estadísticas reales de MongoDB Atlas -->
   <ion-grid class="stats-grid">
     <ion-row>
       <ion-col size="4">
@@ -37,7 +42,7 @@
           <div class="stat-badge blue">
             <ion-icon name="document-text-outline"></ion-icon>
           </div>
-          <h3>{{ recentTickets.length }}</h3>
+          <h3>{{ stats.total }}</h3>
           <p>Mis incidencias</p>
         </div>
       </ion-col>
@@ -47,7 +52,7 @@
           <div class="stat-badge orange">
             <ion-icon name="time-outline"></ion-icon>
           </div>
-          <h3>1</h3>
+          <h3>{{ stats.enProceso }}</h3>
           <p>En proceso</p>
         </div>
       </ion-col>
@@ -57,7 +62,7 @@
           <div class="stat-badge green">
             <ion-icon name="checkmark-circle-outline"></ion-icon>
           </div>
-          <h3>5</h3>
+          <h3>{{ stats.resueltas }}</h3>
           <p>Resueltas</p>
         </div>
       </ion-col>
@@ -76,18 +81,19 @@
   <div class="recent-section">
     <div class="section-header">
       <h3>Mis incidencias recientes</h3>
-
-      <!-- Muestra la opción de ver todas si existen incidencias -->
-      @if (sihay && recentTickets.length > 0) {
-        <a class="see-all">Ver todas</a>
+      @if (recentTickets.length > 0) {
+        <a class="see-all" (click)="verTodas()" style="cursor: pointer;">Ver todas</a>
       }
     </div>
 
-    <!-- Recorre el arreglo y muestra cada incidencia -->
-    @if (sihay && recentTickets.length > 0) {
+    @if (cargando && recentTickets.length === 0) {
+      <div class="ion-text-center ion-padding">
+        <ion-spinner name="crescent" color="primary"></ion-spinner>
+        <p style="color: #64748b; font-size: 13px;">Sincronizando con HelpDesk...</p>
+      </div>
+    } @else if (recentTickets.length > 0) {
       <ion-list lines="none" class="tickets-list">
-
-        @for (item of recentTickets; track item.id) {
+        @for (item of recentTickets; track item.rawId) {
           <ion-item class="ticket-card" button (click)="verDetalle(item)">
             <ion-label>
               <div class="ticket-top">
@@ -100,21 +106,27 @@
                 <span class="ticket-title">{{ item.title }}</span>
                 <span class="ticket-time">{{ item.time }}</span>
               </div>
+
+              @if (item.imagenes && item.imagenes.length > 0) {
+                <div style="margin-top: 6px; display: flex; align-items: center; gap: 4px; color: #166534; font-size: 12px; font-weight: 500;">
+                  <ion-icon name="image-outline"></ion-icon>
+                  <span>{{ item.imagenes.length }} evidencia(s) adjunta(s)</span>
+                </div>
+              }
             </ion-label>
           </ion-item>
         }
-
       </ion-list>
-
     } @else {
-
       <!-- Mensaje que aparece cuando no hay incidencias registradas -->
       <div class="empty-state">
         <ion-icon name="document-text-outline" class="empty-icon"></ion-icon>
         <h4>Aún no hay incidencias</h4>
-        <p>No tienes incidencias registradas en este momento.</p>
+        <p>No tienes incidencias registradas en HelpDesk.</p>
+        <ion-button fill="outline" size="small" (click)="Registrar_Incidencia()" style="margin-top: 12px;">
+          Crear mi primera incidencia
+        </ion-button>
       </div>
-
     }
   </div>
 </ion-content>

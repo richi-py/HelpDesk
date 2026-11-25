@@ -12,11 +12,10 @@
   @if (incidencia) {
     <div class="detail-container">
       <div class="detail-card">
-        
         <!-- Encabezado del Ticket -->
         <div class="ticket-header">
           <span class="ticket-id">{{ incidencia.id }}</span>
-          <ion-badge [class]="'badge-status ' + incidencia.statusClass">
+          <ion-badge [class]="'badge-status ' + (incidencia.statusClass || 'primary')">
             {{ incidencia.status }}
           </ion-badge>
         </div>
@@ -45,14 +44,34 @@
           </div>
         </div>
 
-        <!-- Sección: Comentarios -->
+        <!-- EVIDENCIA FOTOGRÁFICA / FOTOS SUBIDAS -->
+        <div class="section-block fotos-section">
+          <h3>Fotografías adjuntas ({{ incidencia.imagenes?.length || 0 }})</h3>
+          @if (incidencia.imagenes && incidencia.imagenes.length > 0) {
+            <div class="galeria-grid">
+              @for (img of incidencia.imagenes; track img.url) {
+                <div class="foto-item" (click)="verFotoCompleta(img.url, img.tipo)">
+                  <img [src]="img.url" alt="Evidencia" class="foto-thumb" (error)="onImgError($event)" />
+                  <div class="foto-overlay-zoom">
+                    <ion-icon name="search-outline"></ion-icon>
+                  </div>
+                  <span class="foto-tag">{{ img.tipo === 'solucion' ? 'Solución' : 'Evidencia' }}</span>
+                </div>
+              }
+            </div>
+          } @else {
+            <p class="no-fotos">No se adjuntaron fotografías a esta incidencia.</p>
+          }
+        </div>
+
+        <!-- Sección: Comentarios / Solución -->
         <div class="section-block">
-          <h3>Comentarios</h3>
+          <h3>Comentarios / Solución</h3>
           <p class="comments-text">{{ incidencia.comments || 'Aún no hay comentarios.' }}</p>
         </div>
 
         <!-- Botón de Acción -->
-        <div class="action-container" >
+        <div class="action-container">
           <ion-button expand="block" shape="round" color="primary" class="history-btn" (click)="Ver_Historial()">
             Ver historial
           </ion-button>
@@ -60,4 +79,25 @@
       </div>
     </div>
   }
+
+  <!-- MODAL: VISOR DE FOTOGRAFÍAS EN PANTALLA COMPLETA DIRECTO EN LA APP -->
+  <ion-modal [isOpen]="fotoModalAbierta" (didDismiss)="cerrarFotoModal()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="dark">
+          <ion-title>{{ fotoSeleccionadaTipo === 'solucion' ? 'Fotografía de Solución' : 'Fotografía de Evidencia' }}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="cerrarFotoModal()">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="foto-viewer-content">
+        <div class="foto-viewer-container" (click)="cerrarFotoModal()">
+          <img [src]="fotoSeleccionadaUrl" alt="Fotografía en tamaño completo" class="foto-fullscreen-img" />
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

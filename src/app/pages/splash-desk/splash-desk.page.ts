@@ -1,28 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonImg, IonLoading, IonSpinner } from '@ionic/angular';
+import { IonContent, IonImg, IonLoading, IonSpinner } from '@ionic/angular';
 import { Router } from '@angular/router';
-
+import { IncidenciasService } from '../../services/incidencias.service';
 
 @Component({
   selector: 'app-splash-desk',
   templateUrl: './splash-desk.page.html',
   styleUrls: ['./splash-desk.page.scss'],
   standalone: true,
-  imports: [IonImg, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonLoading, IonSpinner]
+  imports: [IonImg, IonContent, CommonModule, FormsModule, IonLoading, IonSpinner]
 })
 export class SplashDeskPage implements OnInit {
 
   isLoading = true;
-  constructor(private router:Router) { }
+  constructor(
+    private router: Router,
+    private incidenciasService: IncidenciasService
+  ) { }
 
   ngOnInit() {
     setTimeout(() => {
-      this.router.navigate(['/login']);
-    }, 2000);
+      if (this.incidenciasService.isAuthenticated()) {
+        this.router.navigate(['/tabs/tab1']);
+      } else {
+        this.router.navigate(['/login']);
+      }
+    }, 1500);
   }
-
-  
-
 }
